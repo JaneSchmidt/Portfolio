@@ -1,0 +1,36 @@
+h1 {
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-left: 1cm;
+}
+
+h2{
+    font-size: 23px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 1cm;
+    display:inline-block; 
+    margin-right:50px;
+   
+
+}
+
+h3{
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 2cm;
+    display:inline-block;
+    margin-right:100px;
+}
+
+body{
+    background-color:rgb(192, 241, 189);
+}
+
+button{
+    display:inline-block;
+}
+
+p{
+    display:inline-block;
+}
+
