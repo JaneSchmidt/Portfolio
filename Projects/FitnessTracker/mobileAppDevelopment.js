@@ -9,15 +9,12 @@ function init(){
             break;
           case "stats" :
             image.src = "statisticsBlurred.png";
-            console.log("1");
             break;
           case "table" :
             image.src = "tableBlurred.png";
-            console.log("2");
             break;
           case "tracker" :
             image.src = "trackerBlurred.png";
-            console.log("3");
             break;
         }
 

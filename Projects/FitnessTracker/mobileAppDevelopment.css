@@ -1,4 +1,32 @@
-img {
-    height : 350px;
-    margin-right: 20px;
+#addWorkout{
+    position:sticky;
+    float: left;
+    left: 60px;
+    margin-top: 50px;
+    height: 500px;
 }
+#tracker{
+    position:sticky;
+    float: right;
+    right: 50px;
+    margin-top: 550px;
+    height: 500px;
+}
+#stats{
+    position:sticky;
+    float: left;
+    left: 20px;
+    margin-top: 1050px;
+    height: 500px;
+}
+#table{
+    position:sticky;
+    float: right;
+    right: 60px;
+    margin-top: 1550px;
+    height: 500px;
+}
+h1, #description {display:inline; 
+    vertical-align:middle;
+    margin-left: 20px; 
+    margin-bottom: 300px;} 
