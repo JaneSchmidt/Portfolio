@@ -1,0 +1,1 @@
+This is an iOS app that I worked on with two other people in Mobile App Development (2022). This course had a project based approach as we explored the steps to developing a mobile app. We primarily coded in Swift and focused on the MVC pattern. 
