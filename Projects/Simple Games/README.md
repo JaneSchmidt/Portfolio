@@ -1,0 +1,1 @@
+This is an assortment of simple programs I have written in C, Java, JavaScript, and HTML between the years 2021-2022. To access the webpages I created in the course JavaScript (2022) go to this link: https://schmija.pages.iu.edu
