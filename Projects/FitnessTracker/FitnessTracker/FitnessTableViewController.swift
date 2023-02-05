@@ -36,7 +36,7 @@ class FitnessTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        // returns the number of rows
         self.myAppDelegate = UIApplication.shared.delegate as? AppDelegate
         self.myModel = self.myAppDelegate?.myModel
         let count = self.myModel?.getDataCount() ?? 0
@@ -44,6 +44,7 @@ class FitnessTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+            // loads data in table when the view is displayed to the user
             if let myTableView = self.view as? UITableView{
                 myTableView.reloadData()        }
             self.tableView.rowHeight = 200
@@ -51,17 +52,18 @@ class FitnessTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // locates a resuable cell to display workout data using the identifier "cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FitnessTableViewCell
         self.myAppDelegate = UIApplication.shared.delegate as? AppDelegate
         self.myModel = self.myAppDelegate?.myModel
         let item = self.myModel?.myData[indexPath.row]
+        
+        // configure the cell using the data obtained from the Model class
         cell?.type?.text = item?.type ?? ""
         cell?.date?.text = item?.date ?? ""
         cell?.mile?.text = item?.mile ?? ""
         cell?.duration?.text = item?.duration ?? ""
         cell?.notes?.text = item?.notes ?? ""
-
-        // Configure the cell...
 
         return cell!
     }
