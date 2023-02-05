@@ -1,22 +1,22 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Jane Schmidt, Jivitesh Yadav
 // 
 // Create Date: 03/06/2021 03:00:39 PM
 // Design Name: 
 // Module Name: ElevCtrl_tb
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
 // 
 // Dependencies: 
 // 
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
-// 
+//
+// This is a test bench for the seven segment display. In this test bench we 
+// move the elevator to each floor and test that the seven segment display is
+// creating the correct display at both an open and closed state.
+//
 //////////////////////////////////////////////////////////////////////////////////
 
 
