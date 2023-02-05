@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-
+// module used to declare the variables used for the inputs and outputs of the elevator
 module ElevCtrl(
     input        clk, //clock
     input        rst, //reset
@@ -9,11 +9,17 @@ module ElevCtrl(
     output logic       door
 );
 
+    
+// defining a set of values for the state of the door at each floor (open or closed) 
 enum { ONE_O, ONE_C, TWO_O, TWO_C, THREE_O, THREE_C, FOUR_O, FOUR_C} floor, nextfloor;
 
 logic [4:0] nextsaveBtn;
 logic [4:0] saveBtn;
 
+    
+// this process is triggered at every positive edge of the clock
+// if the reset button has been pressed then the elevator is put back on the first floor
+// otherwise the elevator moves to the floor requested by the push buttons
 always_ff @ (posedge clk) begin
     if(rst) begin
         floor <= ONE_O;
@@ -25,13 +31,20 @@ always_ff @ (posedge clk) begin
         end
 end
 
+    
+// process automatically executed at time zero 
+// starting the elevator at floor one with the door open
 always_comb begin
     nextfloor = floor;
     door = 1'h1;
     floorSel = 2'h0;
     nextsaveBtn = saveBtn;
     
+    // case statement used to switch between states
     case(floor) 
+        
+        // at each open open state (where the door is open) the next saved button is checked
+        // if the button is the current floor do nothing otherwise send the elevator to the closed state of the same floor 
         ONE_O: begin
             floorSel = 2'h0;
             door = 1'h1;
@@ -41,6 +54,10 @@ always_comb begin
             else 
                nextfloor = floor;
         end
+        
+        // at each closed state the save button is checked
+        // if the save button is for the current floor the elevator is sent to the open state of that floor
+        // otherwise it is either sent to the closed state of the floor below or above
         ONE_C: begin
             floorSel = 2'h0;
             door = 1'h0;
