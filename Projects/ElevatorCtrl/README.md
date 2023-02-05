@@ -1,1 +1,1 @@
-This project is an elevator simulator using a Basys3 board and a Raspberry pi created by a partner and I in Cyber Physical Systems (2021). 
+The Elevator Controller is a finite state machine I created with a partner in the course Engineering Cyber Phsyical Systems (2021). We used System Verilog in Vivado to program the LEDs, seven segment display, push buttons, and switches of a Basys3 Board. We also used the PMOD connectors to connect this Basys3 to an existing cyber physical system that we created using a Raspberry Pi. 
