@@ -34,19 +34,14 @@ class ComparisonViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         //Drawing SpriteKit Content in a View
         //https://developer.apple.com/documentation/spritekit/drawing_spritekit_content_in_a_view
-        //https://developer.apple.com/documentation/spritekit/skscene/creating_a_scene_from_a_file
-        //let scene = SKScene(size: mySKview.bounds.size)
-        //scene.anchorPoint=CGPoint(x:0.5,y:0.5)
-        //let scene = SKScene(fileNamed: "MyScene")
+        
+        // creating the animation scene and presenting it using the SKView 
         let scene = AnimationScene()
-        //scene.addChild(image)
-        //if let mySKview = self.view as? SKView{
         mySKview.presentScene(scene)
-        print("presenting")
-        //}
-        print("presenting data")
+       
+        // creates an instance of the Model class to get the necessary data
+        // displays the data using the labels created above
         let myModel = myAppDelegate.myModel
-        print("current miles \(myModel.getCurrentMiles())")
         todaysDistance.text=myModel.getCurrentMiles()
         lastDistance.text=myModel.getLastMiles()
         todaysTime.text=myModel.getCurrentTime()
