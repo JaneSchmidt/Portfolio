@@ -35,6 +35,8 @@ function loadJSON(fileName){
     xobj.send();
 }
 
+// called by loadJSON, creates table on page load 
+// for each record process the JSON data and add it to the table 
 function loadTable(data){
     const dataJ = {};
     data.forEach( (record) => {
@@ -62,6 +64,7 @@ function loadTable(data){
                 }
             }
         }
+        
         if(record.session1.length == 0){
             sessionOneStr = "";
         }
@@ -106,12 +109,14 @@ function loadTable(data){
     document.getElementById("num").innerHTML = "Total: " + allData.length + " students";
 }
 
+// functionality for the register button 
 const form = document.getElementById("summerCampRegistration");
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     new FormData(form);
 });
 
+// adding a record to the form 
 form.addEventListener("formdata", (event) => {
     const data = event.formData;
     const dataJson = {};
@@ -122,6 +127,7 @@ form.addEventListener("formdata", (event) => {
 
     const entry = {};
 
+    // error produced if the email already exists in database 
     let alertEmail = 0;
     allData.forEach((record) => {
         if(dataJson.email === record.email){
@@ -259,6 +265,7 @@ form.addEventListener("formdata", (event) => {
     document.getElementById('highschool-input').value = '';
 });
 
+// appends a row to the table with all necessary information 
 function addRow(data){
     const table = document.getElementById("registrar-table");
     const newRow = document.createElement("tr");
@@ -298,6 +305,7 @@ function addRow(data){
     table.appendChild(newRow);
 }
 
+// filters through all the data to find the records with the searched course
 function searchClick(){
     let searchedCourse = document.getElementById("search-input").value;
 
@@ -319,7 +327,8 @@ function searchClick(){
     });
 }
 
-
+// functionality of the reset button 
+// resets the table to show all data after a search 
 function resetClick(){
     document.getElementById("num").innerHTML = "Total: " + allData.length + " students";
     document.getElementById("search-input").value = "";
