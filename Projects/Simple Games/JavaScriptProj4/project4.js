@@ -18,7 +18,8 @@ function init(){
 
 init(); 
 
-
+// counts the words and based on the type of picture selection 
+// calls the correct function for the picture 
 function enoughWords(wordCount){
     document.getElementById("currCount").innerHTML = "Current word count:" + wordCount;
     let amount = document.getElementById("numOfWords").value;
@@ -44,6 +45,7 @@ function enoughWords(wordCount){
     }
 }
 
+// API calls to get cat, dog, fox, and a surprised photo
 async function catClick(){
     const URL = "https://api.thecatapi.com/v1/images/search";
     const response = await fetch(URL);
@@ -100,6 +102,7 @@ async function surpriseClick(){
       }
 } 
 
+// API call to get cat fact 
 async function getCatFact(){
     const URL = "https://catfact.ninja/fact";
     const response = await fetch(URL);
