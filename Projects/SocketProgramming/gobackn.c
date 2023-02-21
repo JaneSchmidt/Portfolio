@@ -23,6 +23,7 @@ void gbn_server(char* iface, long port, FILE* fp) {
    int opt = 1, chat_sock = 0, bindNum;
    char rcvMessage[257], writeMessage[MAXBUFF], ack[1];
 
+   //Specifying fields for getaddrinfo
    struct addrinfo *aiList = NULL, *ai, sock_addr;
    memset(&sock_addr, 0, sizeof(sock_addr));
    sock_addr.ai_family = AF_UNSPEC;
@@ -33,17 +34,21 @@ void gbn_server(char* iface, long port, FILE* fp) {
    sock_addr.ai_addr = NULL;
    sock_addr.ai_next = NULL;
 
-
+   //converts the port number to a long to be read by getaddrinfo
    char longPort[20];
    sprintf(longPort, "%ld", port);
    if(getaddrinfo(NULL, longPort, &sock_addr, &aiList) < 0){
       perror("getaddrinfo");
    }
 
+   //setting the timeout for recv() 
    struct timeval tv = {
       .tv_usec = 600000
    };
 
+   //iterating through the list of address structures returned by getaddrinfo
+   //to find an addr struct that we are able to bind to 
+   //sets socket options to reuse addr and to timeout the rcv() func
    for(ai = aiList; ai != NULL; ai = ai->ai_next){
       if((chat_sock = socket(ai->ai_family, ai->ai_socktype, ai->ai_protocol)) == -1){
          perror("socket");
@@ -63,6 +68,7 @@ void gbn_server(char* iface, long port, FILE* fp) {
 
    freeaddrinfo(aiList);
 
+   //ack is the acknowledgment number sent by the client 
    ack[0] = 0;
    while(1){
       if(ack[0] == 20){
@@ -72,6 +78,9 @@ void gbn_server(char* iface, long port, FILE* fp) {
       memset(rcvMessage, 0, 257);
       memset(writeMessage, 0, MAXBUFF);
       
+      //checks the size of the package sent by client
+      //if size is zero send an ack to the client and close the socket 
+      //if size is >0 and the package contains the correct ack, write to the file 
       for(int i = 0; i < 5; i++){
 	 if((size = recvfrom(chat_sock, rcvMessage, 257, 0, ai->ai_addr, &ai->ai_addrlen))< 0){
 	    continue;
@@ -95,6 +104,7 @@ void gbn_server(char* iface, long port, FILE* fp) {
 	    break;
 	 }
       }
+      //send last correct ack recieved to client 
       if(sendto(chat_sock, ack, 1, 0, ai->ai_addr, ai->ai_addrlen) < 0){
          perror("sendto");
       }
@@ -150,6 +160,8 @@ void gbn_client(char* host, long port, FILE* fp) {
       memset(rcvMessage, 0, 10);
       size = 0;
 
+      //reads in 20 packets of 256 words to the buffer 
+      //takes note of the eof 
       for(int i = 0; i < 20; i++){
           if((size = fread(buffer[i], 1, 256, fp)) < 0){
              perror("fread");
@@ -170,6 +182,8 @@ void gbn_client(char* host, long port, FILE* fp) {
 	 if(ptr1 == 20){
 	    break;
 	 }
+         
+         //sends 5 packets at a time to server 
          for(int j = ptr1; j < ptr2 && j < 20; j++){
 	    if(j == endOfFile){
 	       end = true;
@@ -193,12 +207,15 @@ void gbn_client(char* host, long port, FILE* fp) {
 	    }
 	 }
 
+         //checks the ack sent by the server, sets ptrs to the correct pakcet number 
+         //accounts for lost or corrupted packets
 	 if(recvfrom(client_sock, rcvMessage, 1, 0, ai->ai_addr, &ai->ai_addrlen)< 0){
             continue;
          } else{
 	    ptr1 = rcvMessage[0];
 	    ptr2 = ptr1+5;
 	 } 
+         //sends empty message to signify eof, closes socket 
 	 if(end == true && ptr1 == endOfFile+1){
             while(1){
                if(sendto(client_sock, "", 0, 0, ai->ai_addr, ai->ai_addrlen) < 0){
@@ -218,11 +235,3 @@ void gbn_client(char* host, long port, FILE* fp) {
 }
 
 
-//the server sends the most recent in order ack then the client starts at the next seq number 
-//
-//client: 
-//fread 5 packets worth of data 
-//send all 5 packets 
-//once the ack is recieved start 
-//
-//
