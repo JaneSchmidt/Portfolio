@@ -1,1 +1,1 @@
-This is an assortment of simple programs I have written in C, Java, JavaScript, and HTML between the years 2021-2022. To access the webpages I created in the course JavaScript (2022) go to this link: https://schmija.pages.iu.edu
+This is an assortment of simple programs I have written in JavaScript, CSS, and HTML in a course called Javascript in Fall 2022. Here is the link to access the webpages in this folder: https://schmija.pages.iu.edu
