@@ -1,0 +1,1 @@
+Go Back N is a RUDP protocol that reliably sends a file in packets from client to server on a lossy network. I wrote this program in the course Intro To Computer Networks which focused on developing a thorough understanding of architectures and techniques employed in computer networks, including protocols and mechanisms used in the Internet TCP/IP protocol suite. 
