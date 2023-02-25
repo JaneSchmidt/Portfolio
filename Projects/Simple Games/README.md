@@ -1,1 +1,0 @@
-This is an assortment of simple programs I have written in JavaScript, CSS, and HTML in a course called Javascript in Fall 2022. Here is the link to access the webpages in this folder: https://schmija.pages.iu.edu

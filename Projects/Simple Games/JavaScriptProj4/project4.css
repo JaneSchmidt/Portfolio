@@ -1,8 +1,0 @@
-.wordsOne, .selectType, .wordsTwo, .selectCount, .wordsThree{
-    display: inline-block;
-}
-
-img{
-    max-height: 500px;
-    max-width:500px;
-}
