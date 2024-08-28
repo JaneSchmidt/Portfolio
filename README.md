@@ -4,4 +4,4 @@ Hi, my name is Jane Schmidt and this is my github portfolio containing some of t
 
 Link to see the Health Harbor application: https://healthharbor.netlify.app
 
-Link to the github repo of my current project: https://github.com/JaneSchmidt/LetsTalkAboutIt 
+Link to the github repo of Let's Talk About It: https://github.com/JaneSchmidt/LetsTalkAboutIt 
